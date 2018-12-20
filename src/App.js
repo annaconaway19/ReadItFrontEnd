@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import 'semantic-ui-css/semantic.min.css'
 import NavBar from './components/NavBar';
 import BookContainer from './containers/BookContainer';
 import ReviewContainer from './containers/ReviewContainer';
@@ -16,17 +17,16 @@ class App extends Component {
   componentDidMount() {
     fetch('http://localhost:3001/books')
     .then(res => res.json())
-    .then(books => console.log(books))
+    .then(books => this.setState({ allBooks: books }))
   }
 
   render() {
     return (
       <div className="App">
-        ReadIt
         <Router>
           <React.Fragment>
             <NavBar />
-            <Route exact path='/readit' component={BookContainer} />
+            <Route exact path='/readit' render={() => <BookContainer books={this.state.allBooks} />} />
             <Route exact path='/reviews' component={ReviewContainer} />
             <Route exact path='/readers/:username' component={ReaderProfile}/>
           </React.Fragment>

@@ -4,12 +4,13 @@ import SearchBar from '../components/SearchBar'
 
 class BookContainer extends Component {
 
+
   render() {
     return (
       <div>
         Book Container
         <SearchBar />
-        <BookCard />
+        {this.props.books.map(book => <BookCard book={book} />)}
       </div>
     );
   }
