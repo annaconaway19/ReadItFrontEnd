@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import BookCard from '../components/BookCard'
+import SearchBar from '../components/SearchBar'
 
 class BookContainer extends Component {
 
@@ -7,6 +8,7 @@ class BookContainer extends Component {
     return (
       <div>
         Book Container
+        <SearchBar />
         <BookCard />
       </div>
     );

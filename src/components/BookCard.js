@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 class BookCard extends Component {
   render() {
     return (
-      <div>BookCard</div>
+      <div className = "ui card">BookCard</div>
     )
   }
 }
