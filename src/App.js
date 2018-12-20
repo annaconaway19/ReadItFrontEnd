@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import NavBar from './components/NavBar'
-import BookContainer from './containers/BookContainer'
-import ReviewContainer from './containers/ReviewContainer'
-import ReaderProfile from './containers/ReaderProfile'
+import NavBar from './components/NavBar';
+import BookContainer from './containers/BookContainer';
+import ReviewContainer from './containers/ReviewContainer';
+import ReaderProfile from './containers/ReaderProfile';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 
 class App extends Component {
 
@@ -12,14 +13,24 @@ class App extends Component {
     allBooks: []
   }
 
+  componentDidMount() {
+    fetch('http://localhost:3001/books')
+    .then(res => res.json())
+    .then(books => console.log(books))
+  }
+
   render() {
     return (
-      <div>
+      <div className="App">
         ReadIt
-        <NavBar />
-        <BookContainer />
-        <ReviewContainer />
-        <ReaderProfile />
+        <Router>
+          <React.Fragment>
+            <NavBar />
+            <Route exact path='/readit' component={BookContainer} />
+            <Route exact path='/reviews' component={ReviewContainer} />
+            <Route exact path='/readers/:username' component={ReaderProfile}/>
+          </React.Fragment>
+        </Router>
       </div>
     );
   }
