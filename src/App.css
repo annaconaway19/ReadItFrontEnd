@@ -9,6 +9,10 @@
   color: white;
 }
 
+.ui.card {
+  display: grid;
+}
+
 
 @keyframes App-logo-spin {
   from {

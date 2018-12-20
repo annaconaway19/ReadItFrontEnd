@@ -7,8 +7,8 @@ class BookContainer extends Component {
   render() {
     return (
       <div>
-        <div className="ui grid">
-          {this.props.books.map(book => <BookCard key={book.id} book={book} />)}
+        <div className="grid">
+          <div className="card">{this.props.books.map(book => <BookCard key={book.id} book={book} />)}</div>
         </div>
       </div>
     );
