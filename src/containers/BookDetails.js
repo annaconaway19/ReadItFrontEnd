@@ -5,7 +5,9 @@ import ReviewForm from '../components/ReviewForm'
 class BookDetails extends Component {
   render() {
     return(
-      <div>stuff about books</div>
+      <div>
+        <img src={this.props.book.img_url} alt={this.props.book.title}/>
+      </div>
     )
   }
 }

@@ -1,22 +1,26 @@
-import React, {Component} from 'react'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-class BookCard extends Component {
-  render() {
+const BookCard = ({ book }) => {
     return (
         <div className = "ui card">
-          <div className='image'>
-            <img alt='' src={this.props.book.img_url} />
-          </div>
+
+            <Link to={`/books/${book.id}`} className='image'>
+              <img alt='' src={book.img_url} onClick={book.selectedBook}/>
+            </Link>
+
           <div className="content">
-            <a className="header">{this.props.book.title}</a>
-              By: {this.props.book.author}
+            <a className="header">{book.title}</a>
           </div>
+          
           <div className="content">
-            {this.props.book.description}
+            By: {book.author}
+            <p>{book.genre}</p>
           </div>
+
         </div>
     )
   }
-}
+
 
 export default BookCard
