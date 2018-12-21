@@ -6,7 +6,6 @@ class ReaderProfile extends Component {
     return (
       <div>My profile
         <p>Books I've read:</p>
-        <BookCard />
       </div>
     )
   }

@@ -9,8 +9,9 @@ class BookCard extends Component {
           </div>
           <div className="content">
             <a className="header">{this.props.book.title}</a>
+              By: {this.props.book.author}
           </div>
-          <div className="description">
+          <div className="content">
             {this.props.book.description}
           </div>
         </div>

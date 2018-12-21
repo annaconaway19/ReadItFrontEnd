@@ -5,13 +5,15 @@ import NavBar from './components/NavBar';
 import BookContainer from './containers/BookContainer';
 import ReviewContainer from './containers/ReviewContainer';
 import ReaderProfile from './containers/ReaderProfile';
+import Login from './components/Login'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 
 class App extends Component {
 
   state = {
-    allBooks: []
+    allBooks: [],
+    selectedBook: null
   }
 
   componentDidMount() {
@@ -26,7 +28,8 @@ class App extends Component {
         <Router>
           <React.Fragment>
             <NavBar />
-            <Route exact path='/readit' render={() => <BookContainer books={this.state.allBooks} />} />
+            <Route exact path='/readit' component={Login} />
+            <Route exact path='/readit/bookshelf' render={() => <BookContainer books={this.state.allBooks} />} />
             <Route exact path='/reviews' component={ReviewContainer} />
             <Route exact path='/readers/:username' component={ReaderProfile}/>
           </React.Fragment>
