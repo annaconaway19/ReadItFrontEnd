@@ -1,18 +1,12 @@
-import React, {Component} from 'react'
+import React from 'react'
 import BookCard from '../components/BookCard'
 
-class BookContainer extends Component {
-
-
-  render() {
+const BookContainer = ({ books, onSelectBook }) => {
     return (
-      <div>
         <div className="book-container">
-          <div className="card">{this.props.books.map(book => <BookCard key={book.id} book={book} />)}</div>
+          <div className="card">{books.map(book => <BookCard key={book.id} book={book} onSelectBook={onSelectBook}/>)}</div>
         </div>
-      </div>
     );
-  }
 }
 
 export default BookContainer
