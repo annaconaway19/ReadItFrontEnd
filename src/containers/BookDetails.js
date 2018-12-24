@@ -4,6 +4,8 @@ import ReviewForm from '../components/ReviewForm'
 import {Link} from 'react-router-dom'
 
 class BookDetails extends Component {
+
+
   render() {
     return(
       <div>
@@ -24,6 +26,9 @@ class BookDetails extends Component {
           <p> {this.props.book.description}</p>
         </div>
         <ReviewForm />
+        <div className='segment'>
+          <h4>Reviews about {this.props.book.title}:</h4>
+        </div>
       </div>
     )
   }

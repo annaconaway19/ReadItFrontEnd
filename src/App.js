@@ -15,7 +15,7 @@ constructor() {
   super()
   this.state = {
     allBooks: [],
-    selectedBook: ''
+    selectedBook: '',
   }
 }
 
