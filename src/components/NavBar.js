@@ -1,5 +1,4 @@
 import React from 'react'
-import SearchBar from './SearchBar'
 import { Link } from 'react-router-dom'
 
 const NavBar = () => {
@@ -9,9 +8,6 @@ const NavBar = () => {
      <Link className="item" to='/readit/bookshelf'>Book Shelf</Link>
      <Link className="item" to='/reviews'>My Reviews</Link>
      <Link className="item" to='/readers/:username'>My Profile</Link>
-     <div className="item">
-      <SearchBar />
-      </div>
    </div>
   )
 }

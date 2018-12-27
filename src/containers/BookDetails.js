@@ -30,10 +30,10 @@ class BookDetails extends Component {
           <h4>Reviews about {this.props.book.title}:</h4>
           {this.props.book.reviews ? this.props.book.reviews.map(rev =>
             <ul>
-              <li>"{rev.details}"  Posted on: {rev.date}</li>
+              <li>"{rev.details}"  by: </li>
             </ul>)  : "No reviews yet!"}
         </div>
-        <ReviewForm />
+        <ReviewForm addReview={this.props.addReview}/>
 
       </div>
     )
