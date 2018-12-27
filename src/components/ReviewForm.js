@@ -35,7 +35,7 @@ class ReviewForm extends Component {
         }
       })
     }).then(res => res.json())
-    .then(newRev => console.log(newRev))
+    .then(newRev => this.props.addReview(newRev))
   }
 
   render() {

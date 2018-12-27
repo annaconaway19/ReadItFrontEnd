@@ -29,8 +29,8 @@ class BookDetails extends Component {
         <div>
           <h4>Reviews about {this.props.book.title}:</h4>
           {this.props.book.reviews ? this.props.book.reviews.map(rev =>
-            <ul>
-              <li key={rev.id}>"{rev.details}"  by: </li>
+            <ul key={rev.id}>
+              <li >"{rev.details}"  by: </li>
             </ul>)  : "No reviews yet!"}
         </div>
         <ReviewForm addReview={this.props.addReview}/>

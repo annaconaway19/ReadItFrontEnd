@@ -4,12 +4,6 @@ import ReviewForm from '../components/ReviewForm'
 
 class ReviewContainer extends Component {
 
-  // componentDidMount() {
-  //   fetch('http://localhost:3001/reviews')
-  //   .then(res => res.json())
-  //   .then(data => this.setState({ bookReviews: data }))
-  // }
-
   render() {
     return (
       <div>
