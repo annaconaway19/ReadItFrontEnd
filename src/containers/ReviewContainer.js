@@ -19,7 +19,7 @@ class ReviewContainer extends Component {
     return (
       <div>
       <h2>My Reviews</h2>
-      {this.state.bookReviews.map(review => <ReviewDetails review={review}/>)}
+      {this.state.bookReviews.map(review => <ReviewDetails key={review.id} review={review}/>)}
       </div>
     )
   }

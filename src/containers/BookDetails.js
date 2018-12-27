@@ -21,14 +21,20 @@ class BookDetails extends Component {
             <p>{this.props.book.genre}</p>
           </div>
         </div>
+
         <div className="ui segment">
           <h4>ReadIt's Take:</h4>
           <p> {this.props.book.description}</p>
         </div>
-        <ReviewForm />
-        <div className='segment'>
+        <div>
           <h4>Reviews about {this.props.book.title}:</h4>
+          {this.props.book.reviews ? this.props.book.reviews.map(rev =>
+            <ul>
+              <li>"{rev.details}"  Posted on: {rev.date}</li>
+            </ul>)  : "No reviews yet!"}
         </div>
+        <ReviewForm />
+
       </div>
     )
   }
