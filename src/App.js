@@ -27,16 +27,16 @@ constructor() {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3001/books')
-    .then(res => res.json())
-    .then(books => this.setState({ allBooks: books }))
+    Promise.all([
+      fetch('http://localhost:3001/books'),
+      fetch('http://localhost:3001/reviews')
+    ])
+    .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
+    .then(([books, reviews]) => this.setState({
+      allBooks: books,
+      bookReviews: reviews }))
   }
 
-  componentDidMount() {
-    fetch('http://localhost:3001/reviews')
-    .then(res => res.json())
-    .then(data => this.setState({ bookReviews: data }))
-  }
 
   onSelectBook = (bookObj) => {
     this.setState({ selectedBook: bookObj }, () => console.log(this.state.selectedBook))
