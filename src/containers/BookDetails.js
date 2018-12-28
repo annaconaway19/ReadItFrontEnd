@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import ReviewDetails from '../components/ReviewDetails'
 import ReviewForm from '../components/ReviewForm'
 

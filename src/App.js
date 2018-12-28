@@ -16,7 +16,8 @@ constructor() {
   this.state = {
     allBooks: [],
     selectedBook: '',
-    bookReviews: []
+    bookReviews: [],
+    searchText: ''
   }
 }
 
@@ -42,6 +43,14 @@ constructor() {
     this.setState({ selectedBook: bookObj }, () => console.log(this.state.selectedBook))
   }
 
+  searchBooks = (e) => {
+    this.setState({searchText: e.currentTarget.value})
+  }
+
+  filteredBooks = () => {
+    return this.state.allBooks.filter(book => book.title.includes(this.state.searchText))
+  }
+
   render() {
     return (
       <div className="App">
@@ -49,8 +58,8 @@ constructor() {
           <React.Fragment>
             <NavBar />
             <Route exact path='/readit' component={Login} />
-            <Route exact path='/readit/bookshelf' render={() => <BookContainer books={this.state.allBooks} onSelectBook={this.onSelectBook}/>} />
-            <Route exact path='/reviews' render={() => <ReviewContainer bookReviews={this.state.bookReviews} addReview={this.addReview}/>} />
+            <Route exact path='/readit/bookshelf' render={() => <BookContainer onChange={this.searchBooks} books={this.filteredBooks()} onSelectBook={this.onSelectBook}/>} />
+            <Route exact path='/reviews' render={() => <ReviewContainer allBooks={this.state.allBooks} bookReviews={this.state.bookReviews} addReview={this.addReview}/>} />
             <Route exact path='/readers/:username' component={ReaderProfile}/>
             <Route exact path='/books/:id' render={(props) => {
               let bookId = props.match.params.id

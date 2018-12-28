@@ -1,16 +1,13 @@
-import React, {Component} from 'react'
+import React from 'react'
 
-class ReviewDetails extends Component {
-
-  render() {
+const ReviewDetails = (props) => {
     return (
       <div>
-        <p>{this.props.review.details}</p>
-        {this.props.review.reader.username} on {this.props.review.date}
+        <p>{props.review.details}</p>
+        {props.review.reader.username} on {props.review.date}
         <br></br>
       </div>
     )
   }
-}
 
 export default ReviewDetails

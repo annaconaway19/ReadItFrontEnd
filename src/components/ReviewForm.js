@@ -8,7 +8,6 @@ class ReviewForm extends Component {
       bookTitle: '',
       username: ''
     }
-
   }
 
   handleChange = (e) => {
@@ -16,8 +15,8 @@ class ReviewForm extends Component {
     this.setState({ [e.target.id]: e.target.value })
   }
 
-
   handleSubmit = (e) => {
+    debugger
     e.preventDefault();
     fetch('http://localhost:3001/reviews', {
       method: "POST",
@@ -27,11 +26,11 @@ class ReviewForm extends Component {
       },
       body: JSON.stringify({
         details: this.state.reviewDetails,
-      reader: {
-        username: this.state.username
-        },
-      book: {
-        title: this.state.bookTitle
+        reader: {
+          username: this.state.username
+          },
+        book: {
+          title: this.state.bookTitle
         }
       })
     }).then(res => res.json())
