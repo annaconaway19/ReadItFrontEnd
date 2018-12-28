@@ -59,9 +59,9 @@ constructor() {
             <NavBar />
             <Route exact path='/readit' component={Login} />
             <Route exact path='/readit/bookshelf' render={() => <BookContainer onChange={this.searchBooks} books={this.filteredBooks()} onSelectBook={this.onSelectBook}/>} />
-            <Route exact path='/reviews' render={() => <ReviewContainer allBooks={this.state.allBooks} bookReviews={this.state.bookReviews} addReview={this.addReview}/>} />
-            <Route exact path='/readers/:username' component={ReaderProfile}/>
-            <Route exact path='/books/:id' render={(props) => {
+            <Route exact path='/readit/reviews' render={() => <ReviewContainer allBooks={this.state.allBooks} bookReviews={this.state.bookReviews} addReview={this.addReview}/>} />
+            <Route exact path='/readit/readers/:username' component={ReaderProfile}/>
+            <Route exact path='/readit/books/:id' render={(props) => {
               let bookId = props.match.params.id
               return <BookDetails book={this.state.allBooks.find(book => book.id == bookId)} addReview={this.addReview}/>
               }} />
