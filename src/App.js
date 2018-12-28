@@ -52,8 +52,10 @@ constructor() {
             <Route exact path='/readit/bookshelf' render={() => <BookContainer books={this.state.allBooks} onSelectBook={this.onSelectBook}/>} />
             <Route exact path='/reviews' render={() => <ReviewContainer bookReviews={this.state.bookReviews} addReview={this.addReview}/>} />
             <Route exact path='/readers/:username' component={ReaderProfile}/>
-            <Route path='/books/:id' render={() => {
-              return <BookDetails addReview={this.addReview} book={this.state.selectedBook} /> }} />
+            <Route exact path='/books/:id' render={(props) => {
+              let bookId = props.match.params.id
+              return <BookDetails book={this.state.allBooks.find(book => book.id == bookId)} addReview={this.addReview}/>
+              }} />
           </React.Fragment>
         </Router>
       </div>
