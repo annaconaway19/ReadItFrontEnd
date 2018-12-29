@@ -6,7 +6,7 @@ class BookCard extends Component {
     return (
         <div className = "ui card" >
 
-            <Link to={`/books/${this.props.book.id}`} className='image'>
+            <Link to={`/readit/books/${this.props.book.id}`} className='image'>
               <img alt='' src={this.props.book.img_url} onClick={() => this.props.onSelectBook(this.props.book)} id={this.props.book.id}/>
             </Link>
 

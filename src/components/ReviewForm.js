@@ -4,9 +4,7 @@ class ReviewForm extends Component {
   constructor() {
     super()
     this.state = {
-      reviewDetails: '',
-      bookTitle: '',
-      username: ''
+      reviewDetails: ''
     }
   }
 
@@ -16,7 +14,6 @@ class ReviewForm extends Component {
   }
 
   handleSubmit = (e) => {
-    debugger
     e.preventDefault();
     fetch('http://localhost:3001/reviews', {
       method: "POST",
@@ -26,18 +23,16 @@ class ReviewForm extends Component {
       },
       body: JSON.stringify({
         details: this.state.reviewDetails,
-        reader: {
-          username: this.state.username
-          },
-        book: {
-          title: this.state.bookTitle
-        }
+ 		date: 'jan',
+		reader_id: 1,
+		book_id: 1
       })
     }).then(res => res.json())
-    .then(newRev => this.props.addReview(newRev))
+    .then(newRev => console.log(newRev))
   }
 
   render() {
+    console.log(this.state.bookTitle)
     return (
       <form className="ui form" onSubmit={this.handleSubmit}>
         <div className="field">
