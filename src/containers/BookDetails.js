@@ -23,9 +23,16 @@ const BookDetails = ({ book, addReview }) => {
         <div>
           <h4>Reviews about {book.title}:</h4>
           {book.reviews ? book.reviews.map(rev =>
-            <ul key={rev.id}>
-              <li >"{rev.details}"  by: </li>
-            </ul>)  : "No reviews yet!"}
+            <div className="ui list" key={rev.id}>
+              <a className="item">
+                <i className="book icon"></i>
+                <div className="content">
+                  <div className="header">By {rev.reader.username} on {rev.date}</div>
+                  <div className="description">{rev.details}</div>
+                </div>
+              </a>
+            </div>
+          )  : "No reviews yet!"}
         </div>
         <ReviewForm addReview={addReview}/>
 

@@ -2,10 +2,14 @@ import React from 'react'
 
 const ReviewDetails = (props) => {
     return (
-      <div>
-        <p>{props.review.details}</p>
-        {props.review.reader.username} on {props.review.date}
-        <br></br>
+      <div className="ui list">
+        <a className="item">
+          <i className="book icon"></i>
+          <div className="content">
+            <div className="header">By {props.review.reader.username} on {props.review.date}</div>
+            <div className="description">{props.review.details}</div>
+          </div>
+        </a>
       </div>
     )
   }
