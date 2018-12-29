@@ -21,7 +21,8 @@ class ReviewForm extends Component {
 
   handleSubmit = (e) => {
     debugger
-    const bookId = e.currentTarget.children[0].value;
+    // let bookId = this.handleBookChange();
+    let date = new Date();
     e.preventDefault();
     fetch('http://localhost:3001/reviews', {
       method: "POST",
@@ -31,9 +32,9 @@ class ReviewForm extends Component {
       },
       body: JSON.stringify({
         details: this.state.reviewDetails,
-     		date: 'jan',
+     		date: date,
     		reader_id: 1,
-    		book_id: bookId
+    		book_id: 2
       })
     }).then(res => res.json())
     .then(newRev => console.log(newRev))
@@ -48,7 +49,7 @@ class ReviewForm extends Component {
         </div>
         <div className='field'>
           <label>Book Title</label>
-          <input type="text" id='bookTitle' placeholder="Book Title" value={(e) => this.handleBookChange(e)} onChange={(e) => this.handleBookChange(e)}/>
+          <input type="text" id='bookTitle' placeholder="Book Title" onChange={(e) => this.handleBookChange(e)}/>
         </div>
         <div className="field">
           <label>Username</label>
