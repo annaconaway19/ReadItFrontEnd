@@ -1,5 +1,4 @@
 import React from 'react'
-import BookCard from '../components/BookCard'
 import { Redirect } from 'react-router-dom'
 
 const ReaderProfile  = ({ currentReader }) => currentReader ? (

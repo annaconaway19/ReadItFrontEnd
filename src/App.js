@@ -19,11 +19,13 @@ constructor() {
     selectedBook: '',
     bookReviews: [],
     searchText: '',
-    currentReader: null
+    currentReader: null,
+    loading: true
   }
 }
 
   componentDidMount() {
+    this.setLoginToken()
     Promise.all([
       fetch('http://localhost:3001/api/v1/books'),
       fetch('http://localhost:3001/api/v1/reviews')
@@ -34,6 +36,24 @@ constructor() {
       bookReviews: reviews
      })
    )}
+
+   setLoginToken = () => {
+     let token = localStorage.getItem('token')
+     if (token) {
+       fetch(`http://localhost:3001/api/v1/profile`, {
+         method: "GET",
+         headers: {
+           "Authentication": `Bearer ${token}`
+         }
+       }).then(res => res.json())
+       .then(data => {
+         this.setState({ currentReader: data.reader, loading: false })
+       })
+     } else {
+       this.setState({ loading: false })
+     }
+   }
+
 
    setCurrentReader = (readerObj) => {
      this.setState({ currentReader: readerObj })
@@ -62,12 +82,12 @@ constructor() {
       <div className="App">
         <Router>
           <React.Fragment>
-            <NavBar />
+            <NavBar logged_in={this.state.currentReader} setCurrentReader={this.setCurrentReader}/>
               <Route exact path='/readit/login' render={() =>
                 this.state.loading ? null : (this.state.currentReader ?
                   <Redirect to="/readit/bookshelf" /> :
                   <Login setCurrentReader={this.setCurrentReader} /> )}
-                /> 
+                />
               <Route exact path='/readit/bookshelf' render={() =>
                   <BookContainer onChange={this.searchBooks} books={this.filteredBooks()} onSelectBook={this.onSelectBook}/>}
                 />
