@@ -4,7 +4,8 @@ class ReviewForm extends Component {
   constructor() {
     super()
     this.state = {
-      reviewDetails: ''
+      reviewDetails: '',
+      chosenBookId: null,
     }
   }
 
@@ -16,12 +17,11 @@ class ReviewForm extends Component {
   handleBookChange = (e) => {
     let reviewedBook = e.target.value
     let foundBook = this.props.allBooks.filter(book => book.title === reviewedBook)
-    return foundBook[0].id
+    let bookId = foundBook[0].id
+    this.setState({ chosenBookId: bookId })
   }
 
-  handleSubmit = (e) => {
-    debugger
-    // let bookId = this.handleBookChange();
+  handleSubmit = (e, handleBookChange) => {
     let date = new Date();
     e.preventDefault();
     fetch('http://localhost:3001/reviews', {
@@ -34,10 +34,10 @@ class ReviewForm extends Component {
         details: this.state.reviewDetails,
      		date: date,
     		reader_id: 1,
-    		book_id: 2
+    		book_id: this.state.chosenBookId
       })
     }).then(res => res.json())
-    .then(newRev => console.log(newRev))
+    .then(newRev => this.props.addReview(newRev))
   }
 
   render() {
