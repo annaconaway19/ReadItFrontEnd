@@ -63,18 +63,20 @@ constructor() {
         <Router>
           <React.Fragment>
             <NavBar />
-              <Route exact path='/readit/' render={() =>
-                  this.state.currentReader == null ?
-                  <Login setCurrentReader={this.setCurrentReader}/> :  <Redirect to='/readit/readers/:username'/> }
-                />
+              <Route exact path='/readit/login' render={() =>
+                this.state.loading ? null : (this.state.currentReader ?
+                  <Redirect to="/readit/bookshelf" /> :
+                  <Login setCurrentReader={this.setCurrentReader} /> )}
+                /> 
               <Route exact path='/readit/bookshelf' render={() =>
                   <BookContainer onChange={this.searchBooks} books={this.filteredBooks()} onSelectBook={this.onSelectBook}/>}
                 />
               <Route exact path='/readit/reviews' render={() =>
                   <ReviewContainer allBooks={this.state.allBooks} bookReviews={this.state.bookReviews} addReview={this.addReview}/>}
               />
-              <Route exact path='/profile' render={() =>
-                <ReaderProfile currentReader={this.state.currentReader}/> }/>
+              <Route exact path='/readit/profile' render={() =>
+                <ReaderProfile currentReader={this.state.currentReader}/> }
+              />
               <Route exact path='/readit/books/:id' render={(props) => {
                   let bookId = props.match.params.id
                   return <BookDetails book={this.state.allBooks.find(book => book.id == bookId)} allBooks={this.state.allBooks} addReview={this.addReview}/>

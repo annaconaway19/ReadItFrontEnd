@@ -2,6 +2,11 @@
   text-align: left;
 }
 
+#logo {
+  color: black;
+  font-weight: bold;
+}
+
 #container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -13,6 +18,7 @@
   padding: 10px;
   width: 25%;
 }
+
 
 .book-details {
   display: grid;
@@ -35,14 +41,10 @@
   font-size: 16px;
 }
 
-#logo {
-  color: black;
-  font-weight: bold;
+.profile {
+  margin: 20px 0 0 20px;
+  font-size: 18px;
 }
-
-/* .ui.list{
-  margin: 10px 10px 10px 0;
-} */
 
 @keyframes App-logo-spin {
   from {

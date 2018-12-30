@@ -7,7 +7,7 @@ const NavBar = () => {
      <Link className="item" to='/readit/bookshelf' id='logo'>ReadIt</Link>
      <Link className="item" to='/readit/bookshelf'>Book Shelf</Link>
      <Link className="item" to='/readit/reviews'>My Reviews</Link>
-     <Link className="item" to='/profile'>My Profile</Link>
+     <Link className="item" to='/readit/profile'>My Profile</Link>
    </div>
   )
 }
