@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
+import { Redirect } from 'react-router-dom'
 import NavBar from './components/NavBar';
 import BookContainer from './containers/BookContainer';
 import ReviewContainer from './containers/ReviewContainer';
@@ -18,20 +19,14 @@ constructor() {
     selectedBook: '',
     bookReviews: [],
     searchText: '',
-    currentUser: null
+    currentReader: null
   }
 }
 
-  addReview = (review) => {
-    this.setState({
-      bookReviews: [review, ...this.state.bookReviews]
-    })
-  }
-
   componentDidMount() {
     Promise.all([
-      fetch('http://localhost:3001/books'),
-      fetch('http://localhost:3001/reviews')
+      fetch('http://localhost:3001/api/v1/books'),
+      fetch('http://localhost:3001/api/v1/reviews')
     ])
     .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
     .then(([books, reviews]) => this.setState({
@@ -40,6 +35,15 @@ constructor() {
      })
    )}
 
+   setCurrentReader = (readerObj) => {
+     this.setState({ currentReader: readerObj })
+   }
+
+   addReview = (review) => {
+     this.setState({
+       bookReviews: [review, ...this.state.bookReviews]
+     })
+   }
 
   onSelectBook = (bookObj) => {
     this.setState({ selectedBook: bookObj }, () => console.log(this.state.selectedBook))
@@ -59,14 +63,23 @@ constructor() {
         <Router>
           <React.Fragment>
             <NavBar />
-              <Route exact path='/readit/' component={Login} />
-              <Route exact path='/readit/bookshelf' render={() => <BookContainer onChange={this.searchBooks} books={this.filteredBooks()} onSelectBook={this.onSelectBook}/>} />
-              <Route exact path='/readit/reviews' render={() => <ReviewContainer allBooks={this.state.allBooks} bookReviews={this.state.bookReviews} addReview={this.addReview}/>} />
-              <Route exact path='/readit/readers/:username' render={() => <ReaderProfile currentReader={this.state.currentReader}/> }/>
+              <Route exact path='/readit/' render={() =>
+                  this.state.currentReader == null ?
+                  <Login setCurrentReader={this.setCurrentReader}/> :  <Redirect to='/readit/readers/:username'/> }
+                />
+              <Route exact path='/readit/bookshelf' render={() =>
+                  <BookContainer onChange={this.searchBooks} books={this.filteredBooks()} onSelectBook={this.onSelectBook}/>}
+                />
+              <Route exact path='/readit/reviews' render={() =>
+                  <ReviewContainer allBooks={this.state.allBooks} bookReviews={this.state.bookReviews} addReview={this.addReview}/>}
+              />
+              <Route exact path='/profile' render={() =>
+                <ReaderProfile currentReader={this.state.currentReader}/> }/>
               <Route exact path='/readit/books/:id' render={(props) => {
-                let bookId = props.match.params.id
-                return <BookDetails book={this.state.allBooks.find(book => book.id == bookId)} allBooks={this.state.allBooks} addReview={this.addReview}/>
-                }} />
+                  let bookId = props.match.params.id
+                  return <BookDetails book={this.state.allBooks.find(book => book.id == bookId)} allBooks={this.state.allBooks} addReview={this.addReview}/>
+                  }}
+              />
           </React.Fragment>
         </Router>
       </div>
