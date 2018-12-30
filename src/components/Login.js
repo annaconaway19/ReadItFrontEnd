@@ -13,6 +13,7 @@ class Login extends React.Component {
   };
 
   handleLoginSubmit = () => {
+    console.log('trying to log in')
     fetch(`http://localhost:3001/api/v1/login`, {
       method:"POST",
       headers: {

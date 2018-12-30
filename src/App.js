@@ -20,7 +20,6 @@ constructor() {
     bookReviews: [],
     searchText: '',
     currentReader: null,
-    loading: true
   }
 }
 
@@ -47,10 +46,10 @@ constructor() {
          }
        }).then(res => res.json())
        .then(data => {
-         this.setState({ currentReader: data.reader, loading: false })
+         this.setState({ currentReader: data.reader})
        })
      } else {
-       this.setState({ loading: false })
+       console.log('must log in')
      }
    }
 
@@ -83,8 +82,7 @@ constructor() {
         <Router>
           <React.Fragment>
             <NavBar logged_in={this.state.currentReader} setCurrentReader={this.setCurrentReader}/>
-              <Route exact path='/readit/login' render={() =>
-                this.state.loading ? null : (this.state.currentReader ?
+              <Route exact path='/readit/login' render={() => (this.state.currentReader ?
                   <Redirect to="/readit/bookshelf" /> :
                   <Login setCurrentReader={this.setCurrentReader} /> )}
                 />
