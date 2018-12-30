@@ -64,7 +64,7 @@ constructor() {
               <Route exact path='/readit/readers/:username' render={() => <ReaderProfile currentReader={this.state.currentReader}/> }/>
               <Route exact path='/readit/books/:id' render={(props) => {
                 let bookId = props.match.params.id
-                return <BookDetails book={this.state.allBooks.find(book => book.id == bookId)} addReview={this.addReview}/>
+                return <BookDetails book={this.state.allBooks.find(book => book.id == bookId)} allBooks={this.state.allBooks} addReview={this.addReview}/>
                 }} />
           </React.Fragment>
         </Router>

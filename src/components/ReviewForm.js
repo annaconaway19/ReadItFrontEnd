@@ -23,6 +23,7 @@ class ReviewForm extends Component {
 
   handleSubmit = (e, handleBookChange) => {
     let date = new Date();
+    let submittedDate = date.toLocaleDateString();
     e.preventDefault();
     fetch('http://localhost:3001/reviews', {
       method: "POST",
@@ -32,7 +33,7 @@ class ReviewForm extends Component {
       },
       body: JSON.stringify({
         details: this.state.reviewDetails,
-     		date: date,
+     		date: submittedDate,
     		reader_id: 1,
     		book_id: this.state.chosenBookId
       })
