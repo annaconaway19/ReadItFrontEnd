@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
+import { withRouter } from "react-router";
+import { Button, Form, Segment, Message } from "semantic-ui-react";
 
-class Login extends Component {
+class LoginForm extends React.Component {
   state = {
     username: "",
     password: ""
-  }
+  };
 
-  handleChange = (e, { name, value}) => {
+  handleChange = (e, { name, value }) => {
     this.setState({ [name]: value });
-  }
+  };
 
-  handleLogin = () => {
+  handleLoginSubmit = () => {
     fetch(`http://localhost:3001/api/v1/login`, {
       method:"POST",
       headers: {
@@ -27,28 +29,46 @@ class Login extends Component {
         alert('Incorrect username or password')
       }else{
         console.log(data)
-        this.props.setCurrentReader(data.user_info)
+        this.props.setCurrentUser(data.user_info)
         localStorage.setItem('token', data.token)
       }
     })
   };
 
-
   render() {
     return (
-      <form className="ui form">
-        <div className="field">
-          <label>Username</label>
-          <input type="text" name="username" value={this.state.username} placeholder="Username" onChange={this.handleChange} />
-        </div>
-        <div className="field">
-          <label>Password</label>
-          <input type="text" name="password" value={this.state.password} placeholder="Password" onChange={this.handleChange} />
-        </div>
-        <button className="ui button" type="submit">Sign In</button>
-      </form>
-    )
+      <Segment>
+        <Form
+          onSubmit={this.handleLoginSubmit}
+          loading={this.props.authenticatingUser}
+          error={this.props.failedLogin}
+        >
+          <Message
+            error
+            header={this.props.failedLogin ? this.props.error : null}
+          />
+          <Form.Group widths="equal">
+            <Form.Input
+              label="username"
+              placeholder="username"
+              name="username"
+              onChange={this.handleChange}
+              value={this.state.username}
+            />
+            <Form.Input
+              type="password"
+              label="password"
+              placeholder="password"
+              name="password"
+              onChange={this.handleChange}
+              value={this.state.password}
+            />
+          </Form.Group>
+          <Button type="submit">Login</Button>
+        </Form>
+      </Segment>
+    );
   }
 }
 
-export default Login
+export default withRouter(LoginForm);

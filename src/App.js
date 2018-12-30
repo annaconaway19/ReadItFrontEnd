@@ -17,7 +17,8 @@ constructor() {
     allBooks: [],
     selectedBook: '',
     bookReviews: [],
-    searchText: ''
+    searchText: '',
+    currentUser: null
   }
 }
 
@@ -58,7 +59,7 @@ constructor() {
         <Router>
           <React.Fragment>
             <NavBar />
-              <Route exact path='/readit/login' component={Login} />
+              <Route exact path='/readit/' component={Login} />
               <Route exact path='/readit/bookshelf' render={() => <BookContainer onChange={this.searchBooks} books={this.filteredBooks()} onSelectBook={this.onSelectBook}/>} />
               <Route exact path='/readit/reviews' render={() => <ReviewContainer allBooks={this.state.allBooks} bookReviews={this.state.bookReviews} addReview={this.addReview}/>} />
               <Route exact path='/readit/readers/:username' render={() => <ReaderProfile currentReader={this.state.currentReader}/> }/>
