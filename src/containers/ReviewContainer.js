@@ -3,12 +3,28 @@ import ReviewDetails from '../components/ReviewDetails'
 import ReviewForm from '../components/ReviewForm'
 
 class ReviewContainer extends Component {
+  constructor(){
+    super()
+    this.state = {
+      readerReviews: []
+    }
+  }
+
+  componentDidMount(){
+    this.filterReviews()
+  }
+
+  filterReviews = () => {
+    let reviews = this.props.bookReviews.filter(rev => rev.reader_id === this.props.reader.id)
+    this.setState({ readerReviews: reviews })
+  }
 
   render() {
     return (
       <div>
       <h2>My Reviews</h2>
-      {this.props.bookReviews.map(review => <ReviewDetails key={review.id} review={review}/>)}
+      { this.state.readerReviews ? this.state.readerReviews.map(review =>
+        <ReviewDetails key={review.id} review={review}/>) : "You have no reviews yet!"}
       <h3>Add A New Review!</h3>
       <ReviewForm  reader={this.props.reader} allBooks={this.props.allBooks} addReview={this.props.addReview}/>
       </div>
