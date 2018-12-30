@@ -90,14 +90,14 @@ constructor() {
                   <BookContainer onChange={this.searchBooks} books={this.filteredBooks()} onSelectBook={this.onSelectBook}/>}
                 />
               <Route exact path='/readit/reviews' render={() =>
-                  <ReviewContainer allBooks={this.state.allBooks} bookReviews={this.state.bookReviews} addReview={this.addReview}/>}
+                  <ReviewContainer reader={this.state.currentReader} allBooks={this.state.allBooks} bookReviews={this.state.bookReviews} addReview={this.addReview}/>}
               />
               <Route exact path='/readit/profile' render={() =>
                 <ReaderProfile currentReader={this.state.currentReader}/> }
               />
               <Route exact path='/readit/books/:id' render={(props) => {
                   let bookId = props.match.params.id
-                  return <BookDetails book={this.state.allBooks.find(book => book.id == bookId)} allBooks={this.state.allBooks} addReview={this.addReview}/>
+                  return <BookDetails reader={this.state.currentReader} book={this.state.allBooks.find(book => book.id == bookId)} allBooks={this.state.allBooks} addReview={this.addReview}/>
                   }}
               />
           </React.Fragment>

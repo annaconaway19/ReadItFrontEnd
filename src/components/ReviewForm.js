@@ -25,7 +25,7 @@ class ReviewForm extends Component {
     let date = new Date();
     let submittedDate = date.toLocaleDateString();
     e.preventDefault();
-    fetch('http://localhost:3001/reviews', {
+    fetch('http://localhost:3001/api/v1/reviews', {
       method: "POST",
       headers: {
         "Content-Type":"application/json",
@@ -34,7 +34,7 @@ class ReviewForm extends Component {
       body: JSON.stringify({
         details: this.state.reviewDetails,
      		date: submittedDate,
-    		reader_id: 1,
+    		reader_id: this.props.reader.id,
     		book_id: this.state.chosenBookId
       })
     }).then(res => res.json())
@@ -51,10 +51,6 @@ class ReviewForm extends Component {
         <div className='field'>
           <label>Book Title</label>
           <input type="text" id='bookTitle' placeholder="Book Title" onChange={(e) => this.handleBookChange(e)}/>
-        </div>
-        <div className="field">
-          <label>Username</label>
-          <input type="text" id="username" placeholder="Username" onChange={this.handleChange}/>
         </div>
           <button className="ui button" type="submit">Submit</button>
       </form>

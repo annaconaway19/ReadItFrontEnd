@@ -10,7 +10,7 @@ class ReviewContainer extends Component {
       <h2>My Reviews</h2>
       {this.props.bookReviews.map(review => <ReviewDetails key={review.id} review={review}/>)}
       <h3>Add A New Review!</h3>
-      <ReviewForm  allBooks={this.props.allBooks} addReview={this.props.addReview}/>
+      <ReviewForm  reader={this.props.reader} allBooks={this.props.allBooks} addReview={this.props.addReview}/>
       </div>
     )
   }

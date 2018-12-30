@@ -2,7 +2,7 @@ import React from 'react'
 import ReviewDetails from '../components/ReviewDetails'
 import ReviewForm from '../components/ReviewForm'
 
-const BookDetails = ({ book, addReview, allBooks }) => {
+const BookDetails = ({ book, addReview, allBooks, reader }) => {
     return book ?
       <div className="book-details">
         <div id='book-card' className = "ui card" >
@@ -34,7 +34,7 @@ const BookDetails = ({ book, addReview, allBooks }) => {
             </div>
           )  : "No reviews yet!"}
         </div>
-        <ReviewForm allBooks={allBooks} addReview={addReview}/>
+        <ReviewForm reader={reader} allBooks={allBooks} addReview={addReview}/>
 
       </div>
     : null
