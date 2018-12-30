@@ -7,7 +7,7 @@ class BookContainer extends Component {
     return (
         <div className="book-container">
           <div> <SearchBar onChange={this.props.onChange}/></div>
-          <div className="card">{this.props.books.map(book => <BookCard key={book.id} book={book} onSelectBook={this.props.onSelectBook}/>)}</div>
+          <div id="container" className="card">{this.props.books.map(book => <BookCard key={book.id} book={book} onSelectBook={this.props.onSelectBook}/>)}</div>
         </div>
     );
   }
