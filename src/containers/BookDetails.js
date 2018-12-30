@@ -4,8 +4,8 @@ import ReviewForm from '../components/ReviewForm'
 
 const BookDetails = ({ book, addReview }) => {
     return book ?
-      <div>
-        <div className = "ui card" >
+      <div className="book-details">
+        <div id='book-card' className = "ui card" >
               <img alt='' src={book.img_url} id={book.id}/>
           <div className="content">
             <a className="header">{book.title}</a>
@@ -16,9 +16,9 @@ const BookDetails = ({ book, addReview }) => {
           </div>
         </div>
 
-        <div className="ui segment">
-          <h4>ReadIt's Take:</h4>
-          <p> {book.description}</p>
+        <div id='readits-take' className="ui segment">
+          <h2>ReadIt's Take:</h2>
+          <h4 className='readit-desc'> {book.description}</h4>
         </div>
         <div>
           <h4>Reviews about {book.title}:</h4>

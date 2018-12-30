@@ -14,6 +14,36 @@
   width: 25%;
 }
 
+.book-details {
+  display: grid;
+  margin: auto;
+}
+
+#book-card {
+  margin: auto;
+}
+
+#readits-take {
+  text-align: center;
+}
+
+.readit-desc {
+  font-size: 20px;
+}
+
+.item {
+  font-size: 16px;
+}
+
+#logo {
+  color: black;
+  font-weight: bold;
+}
+
+/* .ui.list{
+  margin: 10px 10px 10px 0;
+} */
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
