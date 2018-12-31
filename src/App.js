@@ -54,14 +54,8 @@ constructor() {
    }
 
 
-   setCurrentReader = (readerObj) => {
+  setCurrentReader = (readerObj) => {
      this.setState({ currentReader: readerObj })
-   }
-
-   addReview = (review) => {
-     this.setState({
-       bookReviews: [review, ...this.state.bookReviews]
-     })
    }
 
   onSelectBook = (bookObj) => {
@@ -74,6 +68,22 @@ constructor() {
 
   filteredBooks = () => {
     return this.state.allBooks.filter(book => book.title.includes(this.state.searchText))
+  }
+
+  addReview = (review) => {
+     this.setState({
+       bookReviews: [review, ...this.state.bookReviews]
+     })
+   }
+
+  removeReview = (reviewId) => {
+    fetch(`http://localhost:3001/api/v1/reviews/${reviewId}`, {
+      method: "DELETE",
+    }).then(res => res.json())
+    .then(data => {
+      let newRevs = this.state.bookReviews.filter(rev => rev.id != reviewId)
+      this.setState({ bookReviews: newRevs })
+    })
   }
 
   render() {
@@ -90,7 +100,7 @@ constructor() {
                   <BookContainer onChange={this.searchBooks} books={this.filteredBooks()} onSelectBook={this.onSelectBook}/>}
                 />
               <Route exact path='/readit/reviews' render={() =>
-                  <ReviewContainer reader={this.state.currentReader} allBooks={this.state.allBooks} bookReviews={this.state.bookReviews} addReview={this.addReview}/>}
+                  <ReviewContainer reader={this.state.currentReader} allBooks={this.state.allBooks} bookReviews={this.state.bookReviews} addReview={this.addReview} onDelete={this.removeReview}/>}
               />
               <Route exact path='/readit/profile' render={() =>
                 <ReaderProfile currentReader={this.state.currentReader}/> }
