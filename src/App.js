@@ -104,6 +104,12 @@ constructor() {
     }
   }
 
+  updateReviews = () => {
+    this.setState({
+      rendering: false
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -128,7 +134,9 @@ constructor() {
               />
               <Route exact path='/readit/update' render={(props) => {
                 let reviewId = props.match.params.id
-                return <UpdateForm selectedReview={this.state.selectedReview}/>}} />
+                return <UpdateForm reviewDetails={this.state.reviewDetails}
+                selectedReview={this.state.selectedReview}
+                updateReviews={this.updateReviews}/>}} />
 
               <Route exact path='/readit/profile' render={() =>
                 <ReaderProfile currentReader={this.state.currentReader}/> }
