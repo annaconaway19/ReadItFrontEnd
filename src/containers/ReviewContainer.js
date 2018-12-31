@@ -21,12 +21,12 @@ class ReviewContainer extends Component {
 
   render() {
     return (
-      <div>
-      <h2>My Reviews</h2>
-      { this.state.readerReviews ? this.state.readerReviews.map(review =>
-        <ReviewDetails key={review.id} review={review}/>) : "You have no reviews yet!"}
-      <h3>Add A New Review!</h3>
-      <ReviewForm  reader={this.props.reader} allBooks={this.props.allBooks} addReview={this.props.addReview}/>
+      <div className="review-cont">
+        <h2>My Reviews</h2>
+        { this.state.readerReviews ? this.state.readerReviews.map(review =>
+          <ReviewDetails key={review.id} review={review}/>) : "You have no reviews yet!"}
+        <h3>Add A New Review!</h3>
+        <ReviewForm  reader={this.props.reader} allBooks={this.props.allBooks} addReview={this.props.addReview}/>
       </div>
     )
   }

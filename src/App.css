@@ -7,6 +7,11 @@
   font-weight: bold;
 }
 
+#login {
+  width: 50%;
+  margin: 0 50px 0 50px;
+
+}
 #container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -44,6 +49,10 @@
 .profile {
   margin: 20px 0 0 20px;
   font-size: 18px;
+}
+
+.review-cont {
+  padding: 0px 30px 0px 30px;
 }
 
 @keyframes App-logo-spin {

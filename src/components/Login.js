@@ -38,7 +38,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <Segment>
+      <Segment className='login'>
         <Form
           onSubmit={this.handleLoginSubmit}
           loading={this.props.authenticatingUser}
