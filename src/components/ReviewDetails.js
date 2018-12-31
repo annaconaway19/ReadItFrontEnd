@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 
 class ReviewDetails extends Component {
@@ -16,7 +16,7 @@ class ReviewDetails extends Component {
             <div className="description">{this.props.review.details}</div>
         </Link>
           <button className='delete-button' onClick={() => this.props.onDelete(this.props.review.id)}>Delete This Review</button>
-          <button id={this.props.review.id} onClick={(e) => this.props.onEdit(e)} >Edit This Review</button>
+          <button id={this.props.review.id} onClick={(e) => {this.props.onEdit(e); <Redirect to='/readit/reviews/id/${this.props.selectedReview.id}' />}}>Edit This Review</button>
         </a>
       </div>
       )

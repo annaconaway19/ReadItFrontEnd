@@ -90,7 +90,6 @@ constructor() {
 
   handleEditClick = (e) => {
     let reviewId = e.currentTarget.id
-    debugger
     let reviewToEdit = this.state.bookReviews.filter(rev => rev.id === parseInt(reviewId))
     this.setState({ selectedReview: reviewToEdit })
   }
@@ -111,7 +110,10 @@ constructor() {
               <Route exact path='/readit/reviews' render={() =>
                   <ReviewContainer reader={this.state.currentReader} allBooks={this.state.allBooks} bookReviews={this.state.bookReviews} addReview={this.addReview} onDelete={this.removeReview} onEdit={this.handleEditClick}/>}
               />
-              <Route exact path='/readit/reviews/:id' render={() => <UpdateForm />} />
+              <Route exact path='/readit/reviews/:id' render={(props) => {
+                let reviewId = props.match.params.id
+                return <UpdateForm selectedReview={this.state.selectedReview}/>}} />
+
               <Route exact path='/readit/profile' render={() =>
                 <ReaderProfile currentReader={this.state.currentReader}/> }
               />
