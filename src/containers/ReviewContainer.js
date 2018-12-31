@@ -24,7 +24,7 @@ class ReviewContainer extends Component {
       <div className="review">
         <h2>My Reviews</h2>
         { this.state.readerReviews ? this.state.readerReviews.map(review =>
-          <ReviewDetails key={review.id} review={review} onDelete={this.props.onDelete}/>) : "You have no reviews yet!"}
+          <ReviewDetails key={review.id} review={review} onEdit={this.props.onEdit} onDelete={this.props.onDelete}/>) : "You have no reviews yet!"}
         <h3>Add A New Review!</h3>
         <ReviewForm  reader={this.props.reader} allBooks={this.props.allBooks} addReview={this.props.addReview}/>
       </div>

@@ -8,6 +8,7 @@ import ReviewContainer from './containers/ReviewContainer';
 import ReaderProfile from './containers/ReaderProfile';
 import Login from './components/Login'
 import BookDetails from './containers/BookDetails'
+import UpdateForm from './components/UpdateForm'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 
@@ -20,6 +21,7 @@ constructor() {
     bookReviews: [],
     searchText: '',
     currentReader: null,
+    selectedReview: null
   }
 }
 
@@ -86,6 +88,13 @@ constructor() {
     })
   }
 
+  handleEditClick = (e) => {
+    let reviewId = e.currentTarget.id
+    debugger
+    let reviewToEdit = this.state.bookReviews.filter(rev => rev.id === parseInt(reviewId))
+    this.setState({ selectedReview: reviewToEdit })
+  }
+
   render() {
     return (
       <div className="App">
@@ -100,8 +109,9 @@ constructor() {
                   <BookContainer onChange={this.searchBooks} books={this.filteredBooks()} onSelectBook={this.onSelectBook}/>}
                 />
               <Route exact path='/readit/reviews' render={() =>
-                  <ReviewContainer reader={this.state.currentReader} allBooks={this.state.allBooks} bookReviews={this.state.bookReviews} addReview={this.addReview} onDelete={this.removeReview}/>}
+                  <ReviewContainer reader={this.state.currentReader} allBooks={this.state.allBooks} bookReviews={this.state.bookReviews} addReview={this.addReview} onDelete={this.removeReview} onEdit={this.handleEditClick}/>}
               />
+              <Route exact path='/readit/reviews/:id' render={() => <UpdateForm />} />
               <Route exact path='/readit/profile' render={() =>
                 <ReaderProfile currentReader={this.state.currentReader}/> }
               />

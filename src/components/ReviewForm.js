@@ -21,7 +21,7 @@ class ReviewForm extends Component {
     this.setState({ chosenBookId: bookId })
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = (e, handleBookChange) => {
     let date = new Date();
     let submittedDate = date.toLocaleDateString();
     e.preventDefault();
