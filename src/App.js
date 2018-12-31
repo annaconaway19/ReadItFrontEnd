@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
-import { Redirect } from 'react-router-dom'
 import NavBar from './components/NavBar';
 import BookContainer from './containers/BookContainer';
 import ReviewContainer from './containers/ReviewContainer';
@@ -10,7 +9,10 @@ import Login from './components/Login'
 import BookDetails from './containers/BookDetails'
 import UpdateForm from './components/UpdateForm'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
+import { createBrowserHistory } from 'history';
 
+const history = createBrowserHistory();
 
 class App extends Component {
 constructor() {
@@ -21,11 +23,13 @@ constructor() {
     bookReviews: [],
     searchText: '',
     currentReader: null,
-    selectedReview: null
+    selectedReview: null,
+    rendering: false
   }
 }
 
   componentDidMount() {
+    console.log(history)
     this.setLoginToken()
     Promise.all([
       fetch('http://localhost:3001/api/v1/books'),
@@ -91,7 +95,13 @@ constructor() {
   handleEditClick = (e) => {
     let reviewId = e.currentTarget.id
     let reviewToEdit = this.state.bookReviews.filter(rev => rev.id === parseInt(reviewId))
-    this.setState({ selectedReview: reviewToEdit })
+    this.setState({ selectedReview: reviewToEdit, rendering: true })
+  }
+
+  renderUpdate = () => {
+    if (this.state.rendering) {
+      return <Redirect to='/readit/update'/>
+    }
   }
 
   render() {
@@ -108,9 +118,15 @@ constructor() {
                   <BookContainer onChange={this.searchBooks} books={this.filteredBooks()} onSelectBook={this.onSelectBook}/>}
                 />
               <Route exact path='/readit/reviews' render={() =>
-                  <ReviewContainer reader={this.state.currentReader} allBooks={this.state.allBooks} bookReviews={this.state.bookReviews} addReview={this.addReview} onDelete={this.removeReview} onEdit={this.handleEditClick}/>}
+                  <ReviewContainer reader={this.state.currentReader}
+                  allBooks={this.state.allBooks}
+                  bookReviews={this.state.bookReviews}
+                  addReview={this.addReview}
+                  onDelete={this.removeReview}
+                  onEdit={this.handleEditClick}
+                  renderUpdate={this.renderUpdate}/>}
               />
-              <Route exact path='/readit/reviews/:id' render={(props) => {
+              <Route exact path='/readit/update' render={(props) => {
                 let reviewId = props.match.params.id
                 return <UpdateForm selectedReview={this.state.selectedReview}/>}} />
 
