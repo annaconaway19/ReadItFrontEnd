@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import { withRouter } from 'react-router'
+
 
 class UpdateForm extends Component {
   constructor(){
@@ -17,7 +19,6 @@ class UpdateForm extends Component {
     let submittedDate = date.toLocaleDateString();
     e.preventDefault();
 
-
     fetch(`http://localhost:3001/api/v1/reviews/${this.props.selectedReview[0].id}`, {
       method: "PATCH",
       headers: {
@@ -31,7 +32,10 @@ class UpdateForm extends Component {
         book_id: this.props.selectedReview[0].book_id
       })
     }).then(res => res.json())
-    .then(updatedRev => {this.props.updateReviews()} )
+    .then(updatedRev => {
+      this.props.updateReviews()
+      this.props.history.push('/readit/reviews')
+    })
   }
 
   render(){
@@ -51,4 +55,4 @@ class UpdateForm extends Component {
   }
 }
 
-export default UpdateForm
+export default withRouter(UpdateForm);

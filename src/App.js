@@ -8,11 +8,7 @@ import ReaderProfile from './containers/ReaderProfile';
 import Login from './components/Login'
 import BookDetails from './containers/BookDetails'
 import UpdateForm from './components/UpdateForm'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Redirect } from 'react-router-dom'
-import { createBrowserHistory } from 'history';
-
-const history = createBrowserHistory();
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 class App extends Component {
 constructor() {
@@ -29,7 +25,6 @@ constructor() {
 }
 
   componentDidMount() {
-    console.log(history)
     this.setLoginToken()
     Promise.all([
       fetch('http://localhost:3001/api/v1/books'),
@@ -89,7 +84,7 @@ constructor() {
     .then(data => {
       let newRevs = this.state.bookReviews.filter(rev => rev.id != reviewId)
       this.setState({ bookReviews: newRevs })
-    })
+    })  
   }
 
   handleEditClick = (e) => {
@@ -113,7 +108,7 @@ constructor() {
   render() {
     return (
       <div className="App">
-        <Router>
+        <BrowserRouter>
           <React.Fragment>
             <NavBar logged_in={this.state.currentReader} setCurrentReader={this.setCurrentReader}/>
               <Route exact path='/readit/login' render={() => (this.state.currentReader ?
@@ -147,7 +142,7 @@ constructor() {
                   }}
               />
           </React.Fragment>
-        </Router>
+        </BrowserRouter>
       </div>
     );
   }
