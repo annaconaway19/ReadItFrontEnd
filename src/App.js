@@ -136,7 +136,7 @@ constructor() {
                   updateReviews={this.updateReviews}/>}} />
 
                 <Route exact path='/readit/profile' render={() =>
-                  <ReaderProfile currentReader={this.state.currentReader}/> }
+                  <ReaderProfile currentReader={this.state.currentReader} allBooks={this.state.allBooks}/> }
                 />
                 <Route exact path='/readit/books/:id' render={(props) => {
                     let bookId = props.match.params.id

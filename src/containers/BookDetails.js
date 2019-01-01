@@ -5,6 +5,7 @@ import ReviewForm from '../components/ReviewForm'
 const BookDetails = ({ book, addReview, allBooks, reader }) => {
     return book ?
       <div className="book-details">
+      <div className='details-grid'>
         <div id='book-card' className = "ui card" >
               <img alt='' src={book.img_url} id={book.id}/>
           <div className="content">
@@ -16,12 +17,8 @@ const BookDetails = ({ book, addReview, allBooks, reader }) => {
           </div>
         </div>
 
-        <div id='readits-take' className="ui segment">
-          <h2>ReadIt's Take:</h2>
-          <h4 className='readit-desc'> {book.description}</h4>
-        </div>
         <div>
-          <h4>Reviews about {book.title}:</h4>
+          <h3>Reviews about {book.title}:</h3>
           {book.reviews ? book.reviews.map(rev =>
             <div className="ui list" key={rev.id}>
               <a className="item">
@@ -33,6 +30,12 @@ const BookDetails = ({ book, addReview, allBooks, reader }) => {
               </a>
             </div>
           )  : "No reviews yet!"}
+          </div>
+
+        </div>
+        <div id='readits-take' className="ui segment">
+          <h2>ReadIt's Take:</h2>
+          <h4 className='readit-desc'> {book.description}</h4>
         </div>
         <ReviewForm reader={reader} allBooks={allBooks} addReview={addReview}/>
 
