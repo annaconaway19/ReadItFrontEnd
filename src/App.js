@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 import NavBar from './components/NavBar';
@@ -8,7 +8,8 @@ import ReaderProfile from './containers/ReaderProfile';
 import Login from './components/Login'
 import BookDetails from './containers/BookDetails'
 import UpdateForm from './components/UpdateForm'
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router'
 
 class App extends Component {
 constructor() {
@@ -20,7 +21,8 @@ constructor() {
     searchText: '',
     currentReader: null,
     selectedReview: null,
-    rendering: false
+    rendering: false,
+    updated: false
   }
 }
 
@@ -84,7 +86,7 @@ constructor() {
     .then(data => {
       let newRevs = this.state.bookReviews.filter(rev => rev.id != reviewId)
       this.setState({ bookReviews: newRevs })
-    })  
+    })
   }
 
   handleEditClick = (e) => {
@@ -93,7 +95,7 @@ constructor() {
     this.setState({ selectedReview: reviewToEdit, rendering: true })
   }
 
-  renderUpdate = () => {
+  renderUpdateForm = () => {
     if (this.state.rendering) {
       return <Redirect to='/readit/update'/>
     }
@@ -101,47 +103,56 @@ constructor() {
 
   updateReviews = () => {
     this.setState({
-      rendering: false
+      rendering: false, updated: true
     })
+  }
+
+  renderUpdatedReviews = () => {
+    if (this.state.updated) {
+      return <Redirect to='/readit/reviews' />
+    }
   }
 
   render() {
     return (
       <div className="App">
         <BrowserRouter>
-          <React.Fragment>
+          <Fragment>
             <NavBar logged_in={this.state.currentReader} setCurrentReader={this.setCurrentReader}/>
-              <Route exact path='/readit/login' render={() => (this.state.currentReader ?
-                  <Redirect to="/readit/bookshelf" /> :
-                  <Login setCurrentReader={this.setCurrentReader} /> )}
+              <Switch>
+                <Route exact path='/readit/login' render={() => (this.state.currentReader ?
+                    <Redirect to="/readit/bookshelf" /> :
+                    <Login setCurrentReader={this.setCurrentReader} /> )}
+                  />
+                <Route exact path='/readit/bookshelf' render={() =>
+                    <BookContainer onChange={this.searchBooks} books={this.filteredBooks()} onSelectBook={this.onSelectBook}/>}
+                  />
+                <Route exact path='/readit/reviews' render={() =>
+                    <ReviewContainer reader={this.state.currentReader}
+                    allBooks={this.state.allBooks}
+                    bookReviews={this.state.bookReviews}
+                    addReview={this.addReview}
+                    onDelete={this.removeReview}
+                    onEdit={this.handleEditClick}
+                    renderUpdate={this.renderUpdateForm}/>}
                 />
-              <Route exact path='/readit/bookshelf' render={() =>
-                  <BookContainer onChange={this.searchBooks} books={this.filteredBooks()} onSelectBook={this.onSelectBook}/>}
-                />
-              <Route exact path='/readit/reviews' render={() =>
-                  <ReviewContainer reader={this.state.currentReader}
-                  allBooks={this.state.allBooks}
-                  bookReviews={this.state.bookReviews}
-                  addReview={this.addReview}
-                  onDelete={this.removeReview}
-                  onEdit={this.handleEditClick}
-                  renderUpdate={this.renderUpdate}/>}
-              />
-              <Route exact path='/readit/update' render={(props) => {
-                let reviewId = props.match.params.id
-                return <UpdateForm reviewDetails={this.state.reviewDetails}
-                selectedReview={this.state.selectedReview}
-                updateReviews={this.updateReviews}/>}} />
+                <Route exact path='/readit/update' render={(props) => {
+                  let reviewId = props.match.params.id
+                  return <UpdateForm reviewDetails={this.state.reviewDetails}
+                  selectedReview={this.state.selectedReview}
+                  updateReviews={this.updateReviews}
+                  renderUpdatedReviews={this.renderUpdatedReviews}/>}} />
 
-              <Route exact path='/readit/profile' render={() =>
-                <ReaderProfile currentReader={this.state.currentReader}/> }
-              />
-              <Route exact path='/readit/books/:id' render={(props) => {
-                  let bookId = props.match.params.id
-                  return <BookDetails reader={this.state.currentReader} book={this.state.allBooks.find(book => book.id == bookId)} allBooks={this.state.allBooks} addReview={this.addReview}/>
-                  }}
-              />
-          </React.Fragment>
+                <Route exact path='/readit/profile' render={() =>
+                  <ReaderProfile currentReader={this.state.currentReader}/> }
+                />
+                <Route exact path='/readit/books/:id' render={(props) => {
+                    let bookId = props.match.params.id
+                    return <BookDetails reader={this.state.currentReader} book={this.state.allBooks.find(book => book.id == bookId)} allBooks={this.state.allBooks} addReview={this.addReview}/>
+                    }}
+                />
+              </Switch>
+          </Fragment>
         </BrowserRouter>
       </div>
     );

@@ -27,22 +27,23 @@ class UpdateForm extends Component {
       },
       body: JSON.stringify({
         details: this.state.updatedDetails,
-        date: date,
+        date: submittedDate,
         reader_id: this.props.selectedReview[0].reader_id,
         book_id: this.props.selectedReview[0].book_id
       })
     }).then(res => res.json())
     .then(updatedRev => {
       this.props.updateReviews()
-      this.props.history.push('/readit/reviews')
     })
   }
+
 
   render(){
     console.log(this.props)
     return(
       <div>
-      <h2>Update My Review for {this.props.selectedReview[0].book.title}</h2>
+      {this.props.renderUpdatedReviews()}
+        <h2>Update My Review for {this.props.selectedReview[0].book.title}</h2>
         <form className="ui form">
           <div className="field">
             <label>What'd you think?</label>
