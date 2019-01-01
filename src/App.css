@@ -1,3 +1,14 @@
+h1, h2, h3, h4 {
+  text-align: center;
+  font-family: "Courier";
+  font-weight: bold;
+}
+
+
+
+.font {
+  font-family: "Courier", serif;
+}
 .navbar {
   text-align: left;
 }
@@ -9,7 +20,7 @@
 
 #login {
   width: 50%;
-  margin: 0 50px 0 50px;
+  margin: 113px 50px 0 50px;
 
 }
 #container {
@@ -24,6 +35,10 @@
   width: 25%;
 }
 
+.review-list {
+ text-align: left;
+ margin: 39px 0 5% 34%;
+}
 
 .book-details {
   display: grid;
@@ -63,11 +78,15 @@
   display: grid;
   grid-template-columns: 34% 27%;
   margin: 25px 0 25px 27%
-
 }
 
-.ui>.form {
+form {
   width: 45%;
+  margin: auto;
+}
+
+.ui.button {
+  text-align: center;
 }
 @keyframes App-logo-spin {
   from {
