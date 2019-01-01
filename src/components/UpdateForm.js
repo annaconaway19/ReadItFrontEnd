@@ -34,16 +34,14 @@ class UpdateForm extends Component {
     }).then(res => res.json())
     .then(updatedRev => {
       this.props.updateReviews()
-    })
+    }).then(this.props.history.push('/readit/bookshelf'))
   }
-
 
   render(){
     console.log(this.props)
     return(
       <div>
-      {this.props.renderUpdatedReviews()}
-        <h2>Update My Review for {this.props.selectedReview[0].book.title}</h2>
+      <h2>Update My Review for {this.props.selectedReview[0].book.title}</h2>
         <form className="ui form">
           <div className="field">
             <label>What'd you think?</label>

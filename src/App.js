@@ -21,8 +21,7 @@ constructor() {
     searchText: '',
     currentReader: null,
     selectedReview: null,
-    rendering: false,
-    updated: false
+    rendering: false
   }
 }
 
@@ -95,7 +94,7 @@ constructor() {
     this.setState({ selectedReview: reviewToEdit, rendering: true })
   }
 
-  renderUpdateForm = () => {
+  renderUpdate = () => {
     if (this.state.rendering) {
       return <Redirect to='/readit/update'/>
     }
@@ -103,14 +102,8 @@ constructor() {
 
   updateReviews = () => {
     this.setState({
-      rendering: false, updated: true
+      rendering: false
     })
-  }
-
-  renderUpdatedReviews = () => {
-    if (this.state.updated) {
-      return <Redirect to='/readit/reviews' />
-    }
   }
 
   render() {
@@ -134,14 +127,13 @@ constructor() {
                     addReview={this.addReview}
                     onDelete={this.removeReview}
                     onEdit={this.handleEditClick}
-                    renderUpdate={this.renderUpdateForm}/>}
+                    renderUpdate={this.renderUpdate}/>}
                 />
                 <Route exact path='/readit/update' render={(props) => {
                   let reviewId = props.match.params.id
                   return <UpdateForm reviewDetails={this.state.reviewDetails}
                   selectedReview={this.state.selectedReview}
-                  updateReviews={this.updateReviews}
-                  renderUpdatedReviews={this.renderUpdatedReviews}/>}} />
+                  updateReviews={this.updateReviews}/>}} />
 
                 <Route exact path='/readit/profile' render={() =>
                   <ReaderProfile currentReader={this.state.currentReader}/> }
