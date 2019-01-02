@@ -6,6 +6,7 @@ import BookContainer from './containers/BookContainer';
 import ReviewContainer from './containers/ReviewContainer';
 import ReaderProfile from './containers/ReaderProfile';
 import Login from './components/Login'
+import SignUp from './components/SignUp'
 import BookDetails from './containers/BookDetails'
 import UpdateForm from './components/UpdateForm'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
@@ -107,6 +108,7 @@ constructor() {
           <Fragment>
             <NavBar logged_in={this.state.currentReader} setCurrentReader={this.setCurrentReader}/>
               <Switch>
+                <Route exact path='/readit/signup' render={() => <SignUp />} />
                 <Route exact path='/readit/login' render={() => (this.state.currentReader ?
                     <Redirect to="/readit/bookshelf" /> :
                     <Login setCurrentReader={this.setCurrentReader} /> )}

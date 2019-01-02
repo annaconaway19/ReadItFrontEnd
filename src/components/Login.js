@@ -8,6 +8,10 @@ class Login extends React.Component {
     password: ""
   };
 
+  signUp = () => {
+    this.props.history.push('/readit/signup')
+  }
+
   handleChange = (e, { name, value }) => {
     this.setState({ [name]: value });
   };
@@ -38,7 +42,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className='login'>
+      <div className='login-page'>
       <h1>We Came. We Saw. We ReadIt!</h1>
 
       <Segment className='login'>
@@ -70,6 +74,8 @@ class Login extends React.Component {
           </Form.Group>
           <Button type="submit">Login</Button>
         </Form>
+        <button className='ui button signup' type="submit" onClick={this.signUp}>Not A Member? Sign Up</button>
+
       </Segment>
       <h3>“Books are a uniquely portable magic.” – Stephen King</h3>
       </div>

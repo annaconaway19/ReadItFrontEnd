@@ -11,10 +11,14 @@
   font-weight: bold;
 }
 
-#login {
+#login-page {
   width: 50%;
   margin: 113px 50px 0 50px;
+}
 
+.ui.segment.signup {
+  margin-left: 5%;
+  margin-right: 5%;
 }
 #container {
   display: grid;
@@ -81,6 +85,7 @@ form {
 .ui.button {
   text-align: center;
 }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
