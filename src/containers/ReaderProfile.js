@@ -1,18 +1,41 @@
 import React, {Component} from 'react'
 import { Redirect } from 'react-router-dom'
 import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css'
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import { withRouter } from 'react-router';
 
 class ReaderProfile extends Component {
+  constructor(){
+    super()
+    this.state = {
+      allReaders: []
+    }
+  }
+
+
+  deleteReader = (readerId) => {
+    fetch(`http://localhost:3001/api/v1/readers/${readerId}`, {
+      method: "DELETE",
+    }).then(data => {
+      let newReaders = this.state.allReaders.filter(reader => reader.id != readerId)
+      this.setState({ allReaders: newReaders})
+    }).then(this.props.history.push("/readit/login"))
+  }
+
+  fetchReaders = () => {
+    fetch('http://localhost:3001/api/v1/readers')
+    .then(res => res.json())
+    .then(readers => this.setState({ allReaders: readers })
+   )}
 
   deleteProf = () => {
     confirmAlert({
-      title: 'Is this the last page of the story?',
+      title: 'Is this the last page of our story?',
       message: "Are you sure you want to delete your profile?",
       buttons: [
         {
           label: 'Yes',
-          onClick: () => console.log('Goodbye!')
+          onClick: () => this.deleteReader(this.props.currentReader.id)
         },
         {
           label: 'No',
@@ -25,6 +48,7 @@ class ReaderProfile extends Component {
   render(){
     return(
       <div className="reader-prof">
+      {this.fetchReaders()}
       {this.props.currentReader ? (
         <div className="profile">
           <img alt="prof pic" src={this.props.currentReader.img_url} className="ui medium circular image"/>
@@ -46,4 +70,4 @@ class ReaderProfile extends Component {
   }
 }
 
-export default ReaderProfile
+export default withRouter(ReaderProfile);
