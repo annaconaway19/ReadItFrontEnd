@@ -4,7 +4,7 @@ import { Segment } from "semantic-ui-react";
 class SignUp extends Component {
   render(){
     return (
-      <div>
+      <div className="signup">
       <h1>We Came. We Saw. We ReadIt!</h1>
       <Segment className="signup">
       <div className="ui equal width form">
@@ -31,7 +31,8 @@ class SignUp extends Component {
         <div className="ui submit button">Sign Up</div>
         </div>
       </Segment>
-        <h3>“Never trust anyone who has not brought a book with them.” – Lemony Snicket</h3>
+        <h3 className="quote">“Never trust anyone who has not brought a book with them.” – Lemony Snicket</h3>
+        <div className="color"></div>
       </div>
     )
   }

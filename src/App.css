@@ -11,11 +11,18 @@
   font-weight: bold;
 }
 
-#login-page {
-  width: 50%;
-  margin: 113px 50px 0 50px;
-  background-image: url("https://selfishactivist.com/wp-content/uploads/2017/05/o-BOOK-PAGES-facebook.jpg");
+.signup {
+    background-image: url("https://images.fineartamerica.com/images-medium-large/open-book-richard-thomas.jpg");
 
+}
+
+.login {
+  margin: auto;
+  background-image: url("https://images.fineartamerica.com/images-medium-large/open-book-richard-thomas.jpg");
+}
+
+.quote {
+  margin-top: 1px;
 }
 
 .ui.segment.signup {
@@ -27,6 +34,10 @@
   margin-left: 27%;
   padding: 14px;
   margin-top: 9px;
+}
+
+.color{
+  height: 303px;
 }
 
 #container {

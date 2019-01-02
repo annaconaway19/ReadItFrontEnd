@@ -39,9 +39,11 @@ class Login extends React.Component {
   render() {
     return (
       <div className='login'>
+
+      <div>
       <h1>We Came. We Saw. We ReadIt!</h1>
 
-      <Segment className='login'>
+      <Segment>
         <Form
           onSubmit={this.handleLoginSubmit}
           loading={this.props.authenticatingUser}
@@ -72,6 +74,8 @@ class Login extends React.Component {
         </Form>
       </Segment>
       <h3>“Books are a uniquely portable magic.” – Stephen King</h3>
+      </div>
+      <div className='color'></div>
       </div>
     );
   }
