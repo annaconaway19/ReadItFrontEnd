@@ -8,8 +8,7 @@ class ReviewContainer extends Component {
   constructor(){
     super()
     this.state = {
-      readerReviews: [],
-      index: 0
+      readerReviews: []
     }
   }
 

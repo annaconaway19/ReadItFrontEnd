@@ -62,12 +62,14 @@ class ReaderProfile extends Component {
           <button className="ui button" onClick={this.deleteProf}>
             Delete My Account
           </button>
+
+
         </div>
         )
      : <Redirect to='/readit/login' />}
   </div>
   )
-  }
+}
 }
 
 export default withRouter(ReaderProfile);

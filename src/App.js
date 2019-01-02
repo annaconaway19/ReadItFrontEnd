@@ -84,6 +84,7 @@ constructor() {
   }
 
   handleEditClick = (e) => {
+    e.preventDefault()
     let reviewId = e.currentTarget.id
     let reviewToEdit = this.state.bookReviews.filter(rev => rev.id === parseInt(reviewId))
     this.setState({ selectedReview: reviewToEdit, rendering: true })

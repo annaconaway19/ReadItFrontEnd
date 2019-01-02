@@ -5,7 +5,8 @@ import { withRouter } from 'react-router'
 
 class ReviewDetails extends Component {
 
-  handleDelete = (reviewId) => {
+  handleDelete = (e, reviewId) => {
+    e.preventDefault()
     fetch(`http://localhost:3001/api/v1/reviews/${reviewId}`, {
       method: "DELETE",
     }).then(data => {
@@ -24,7 +25,7 @@ class ReviewDetails extends Component {
             <div className="description"> Reviewed by {this.props.review.reader.username} on {this.props.review.date}</div>
             <div className="description">{this.props.review.details}</div>
         </Link>
-          <button className='delete-button' onClick={() => this.handleDelete(this.props.review.id)}>Delete This Review</button>
+          <button className='delete-button' onClick={(e) => this.handleDelete(e, this.props.review.id)}>Delete This Review</button>
 
           <button id={this.props.review.id} onClick={(e) => {this.props.onEdit(e)}}>Edit This Review</button>
         </a>
