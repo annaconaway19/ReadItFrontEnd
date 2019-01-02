@@ -79,13 +79,8 @@ constructor() {
    }
 
   removeReview = (reviewId) => {
-    fetch(`http://localhost:3001/api/v1/reviews/${reviewId}`, {
-      method: "DELETE",
-    }).then(res => res.json())
-    .then(data => {
-      let newRevs = this.state.bookReviews.filter(rev => rev.id != reviewId)
-      this.setState({ bookReviews: newRevs })
-    })
+    let newRevs = this.state.bookReviews.filter(rev => rev.id != reviewId)
+    this.setState({ bookReviews: newRevs })
   }
 
   handleEditClick = (e) => {

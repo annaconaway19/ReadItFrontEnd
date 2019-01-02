@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router'
 
 class ReviewForm extends Component {
   constructor() {
@@ -38,7 +39,7 @@ class ReviewForm extends Component {
     		book_id: this.state.chosenBookId
       })
     }).then(res => res.json())
-    .then(newRev => this.props.addReview(newRev))
+    .then(newRev => this.props.addReview(newRev)).then(this.props.history.push("/readit/reviews"))
   }
 
   render() {
@@ -58,4 +59,4 @@ class ReviewForm extends Component {
     }
   }
 
-export default ReviewForm
+export default withRouter(ReviewForm);
