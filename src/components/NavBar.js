@@ -18,7 +18,10 @@ const NavBar = ({ logged_in, setCurrentReader }) => {
          <Link className="item" to='/readit/login' onClick={logout}>Log Out</Link>
       </React.Fragment>
     ) : (
-    <div className="item" id='logo'>ReadIt</div>
+    <React.Fragment>
+        <Link className="item" id='logo' to='/readit/login'>ReadIt</Link>
+        <Link className="item" to='/readit/signup'>Sign Up</Link>
+    </React.Fragment>
   )}
    </div>
    );
