@@ -10,6 +10,7 @@ class ReviewForm extends Component {
     }
   }
 
+  
   handleChange = (e) => {
     e.persist();
     this.setState({ [e.target.id]: e.target.value })

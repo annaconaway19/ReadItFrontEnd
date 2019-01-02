@@ -9,7 +9,6 @@ import Login from './components/Login'
 import BookDetails from './containers/BookDetails'
 import UpdateForm from './components/UpdateForm'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { withRouter } from 'react-router'
 
 class App extends Component {
 constructor() {
@@ -69,7 +68,7 @@ constructor() {
   }
 
   filteredBooks = () => {
-    return this.state.allBooks.filter(book => book.title.includes(this.state.searchText))
+    return this.state.allBooks.filter(book => book.title.toLowerCase().includes(this.state.searchText) || book.author.toLowerCase().includes(this.state.searchText))
   }
 
   addReview = (review) => {
@@ -116,7 +115,9 @@ constructor() {
                     <BookContainer onChange={this.searchBooks} books={this.filteredBooks()} onSelectBook={this.onSelectBook}/>}
                   />
                 <Route exact path='/readit/reviews' render={() =>
-                    <ReviewContainer reader={this.state.currentReader}
+                    <ReviewContainer
+                    key={this.state.bookReviews.length}
+                    reader={this.state.currentReader}
                     allBooks={this.state.allBooks}
                     bookReviews={this.state.bookReviews}
                     addReview={this.addReview}

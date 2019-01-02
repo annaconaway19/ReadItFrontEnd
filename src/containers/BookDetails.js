@@ -1,5 +1,4 @@
 import React from 'react'
-import ReviewDetails from '../components/ReviewDetails'
 import ReviewForm from '../components/ReviewForm'
 
 const BookDetails = ({ book, addReview, allBooks, reader }) => {
@@ -9,7 +8,7 @@ const BookDetails = ({ book, addReview, allBooks, reader }) => {
         <div id='book-card' className = "ui card" >
               <img alt='' src={book.img_url} id={book.id}/>
           <div className="content">
-            <a className="header">{book.title}</a>
+            <a href={book.title} className="header">{book.title}</a>
           </div>
           <div className="content">
             By: {book.author}
@@ -21,7 +20,7 @@ const BookDetails = ({ book, addReview, allBooks, reader }) => {
           <h3>Reviews about {book.title}:</h3>
           {book.reviews ? book.reviews.map(rev =>
             <div className="ui list" key={rev.id}>
-              <a className="item">
+              <a href="item" className="item">
                 <i className="book icon"></i>
                 <div className="content">
                   <div className="header">By {rev.reader.username} on {rev.date}</div>
@@ -31,6 +30,7 @@ const BookDetails = ({ book, addReview, allBooks, reader }) => {
             </div>
           )  : "No reviews yet!"}
           </div>
+
 
         </div>
         <div id='readits-take' className="ui segment">

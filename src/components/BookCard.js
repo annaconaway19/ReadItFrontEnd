@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom'
 class BookCard extends Component {
   render() {
     return (
-        <div className = "ui card" >
+        <div className = "ui raised link card" >
 
             <Link to={`/readit/books/${this.props.book.id}`} className='image'>
               <img alt='' src={this.props.book.img_url} onClick={() => this.props.onSelectBook(this.props.book)} id={this.props.book.id}/>
             </Link>
 
           <div className="content">
-            <a className="header">{this.props.book.title}</a>
+            <a href="title" className="header">{this.props.book.title}</a>
           </div>
 
           <div className="content">

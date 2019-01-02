@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 
 
@@ -17,7 +17,7 @@ class ReviewDetails extends Component {
     return (
       <div className="ui list">
       {this.props.renderUpdate()}
-        <a className="item">
+        <a href="item" className="item">
           <i className="book icon"></i>
         <Link to={`/readit/books/${this.props.review.book.id}`} className="content">
             <div className="header">{this.props.review.book.title}</div>
