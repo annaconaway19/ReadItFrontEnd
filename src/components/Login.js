@@ -57,15 +57,15 @@ class Login extends React.Component {
           />
           <Form.Group widths="equal">
             <Form.Input
-              label="username"
+              label="Username"
               placeholder="username"
-              name="username"
+              name="Username"
               onChange={this.handleChange}
               value={this.state.username}
             />
             <Form.Input
               type="password"
-              label="password"
+              label="Password"
               placeholder="password"
               name="password"
               onChange={this.handleChange}

@@ -14,12 +14,21 @@
 #login-page {
   width: 50%;
   margin: 113px 50px 0 50px;
+  background-image: url("https://selfishactivist.com/wp-content/uploads/2017/05/o-BOOK-PAGES-facebook.jpg");
+
 }
 
 .ui.segment.signup {
   margin-left: 5%;
   margin-right: 5%;
 }
+
+.ui.button.signup {
+  margin-left: 27%;
+  padding: 14px;
+  margin-top: 9px;
+}
+
 #container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
