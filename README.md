@@ -1,3 +1,11 @@
+# ReadItFrontEnd
+
+Welcome to my social, book review app - ReadIt!
+
+Once you have forked and cloned, this repository, be sure to npm install for all necessary dependencies and then run npm start to view in your browser. You can also view my demo video here - http://bit.ly/ReadItDemo
+
+Enjoy!
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -42,4 +50,3 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-# ReadItFrontEnd
